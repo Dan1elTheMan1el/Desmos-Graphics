@@ -1,0 +1,166 @@
+{
+    "version": 11,
+    "randomSeed": "a8f578afe43f4593ea7a24b9769aab01",
+    "graph": {
+        "viewport": {
+            "xmin": 0,
+            "ymin": 0,
+            "xmax": 1,
+            "ymax": 1
+        },
+        "showGrid": false,
+        "showXAxis": false,
+        "showYAxis": false,
+        "xAxisNumbers": false,
+        "yAxisNumbers": false,
+        "polarNumbers": false,
+        "userLockedViewport": true,
+        "squareAxes": false
+    },
+    "expressions": {
+        "list": [
+            {
+                "type": "folder",
+                "id": "19",
+                "title": "Back / Dimensions",
+                "collapsed": true
+            },
+            {
+                "type": "expression",
+                "id:": "32",
+                "folderId": "19",
+                "color": "#000000",
+                "latex": "w_{idth}=16"
+            },
+            {
+                "type": "expression",
+                "id:": "34",
+                "folderId": "19",
+                "color": "#000000",
+                "latex": "h_{eight}=9"
+            },
+            {
+                "type": "expression",
+                "id": "10",
+                "folderId": "19",
+                "color": "#000000",
+                "latex": "B_{ack}=\\operatorname{polygon}\\left(\\left(L,B\\right),\\left(L,T\\right),\\left(R,T\\right),\\left(R,B\\right)\\right)",
+                "fillOpacity": "1"
+            },
+            {
+                "type": "expression",
+                "id": "14",
+                "folderId": "19",
+                "color": "#6042a6",
+                "latex": "L=\\left\\{\\frac{\\operatorname{width}}{w_{idth}}<\\frac{\\operatorname{height}}{h_{eight}}:0,0.5-\\frac{\\operatorname{height}w_{idth}}{2\\operatorname{width}h_{eight}}\\right\\}",
+                "hidden": true,
+                "slider": {
+                    "hardMin": true,
+                    "hardMax": true,
+                    "min": "0",
+                    "max": "0.5"
+                }
+            },
+            {
+                "type": "expression",
+                "id": "15",
+                "folderId": "19",
+                "color": "#000000",
+                "latex": "B=\\left\\{\\frac{\\operatorname{width}}{w_{idth}}<\\frac{\\operatorname{height}}{h_{eight}}:0.5-\\frac{\\operatorname{width}h_{eight}}{2\\operatorname{height}w_{idth}},0\\right\\}",
+                "hidden": true,
+                "slider": {
+                    "hardMin": true,
+                    "hardMax": true,
+                    "min": "0",
+                    "max": "0.5"
+                }
+            },
+            {
+                "type": "expression",
+                "id": "16",
+                "folderId": "19",
+                "color": "#c74440",
+                "latex": "T=1-B",
+                "hidden": true
+            },
+            {
+                "type": "expression",
+                "id": "17",
+                "folderId": "19",
+                "color": "#2d70b3",
+                "latex": "R=1-L",
+                "hidden": true
+            },
+            {
+                "type": "folder",
+                "id": "24",
+                "title": "Pixels",
+                "collapsed": true
+            },
+            {
+                "type": "expression",
+                "id": "1",
+                "folderId": "24",
+                "color": "#000000",
+                "latex": "P_{ixels}=\\left(i,j\\right)\\operatorname{for}i=\\left[L,L+\\frac{R-L}{w_{idth}-1}...R\\right],j=\\left[B,B+\\frac{T-B}{h_{eight}-1}...T\\right]",
+                "points": true,
+                "lines": false,
+                "dragMode": "NONE",
+                "colorLatex": "C_{olortemp}",
+                "pointSize": "p_{size}",
+                "movablePointSize": "p_{size}"
+            },
+            {
+                "type": "expression",
+                "id": "21",
+                "folderId": "24",
+                "color": "#000000",
+                "latex": "p_{size}=\\frac{1.15\\left(R-L\\right)\\operatorname{width}}{w_{idth}}",
+                "hidden": true
+            },
+            {
+                "type": "expression",
+                "id": "5",
+                "folderId": "24",
+                "color": "#000000",
+                "latex": "C_{olortemp}=C\\left(f_{rame},i\\right)\\operatorname{for}i=\\left[1...{w_{idth}h_{eight}}\\right]"
+            },
+            {
+                "type": "expression",
+                "id": "30",
+                "color": "#388c46",
+                "latex": "f_{rame}=1",
+                "hidden": true,
+                "slider": {
+                    "hardMin": true,
+                    "min": "1",
+                    "hardMax": true,
+                    "max": "",
+                    "loopMode": "PLAY_ONCE",
+                    "step": "1",
+                    "animationPeriod": 11428.57142857143
+                }
+            },
+            {
+                "type": "folder",
+                "id": "35",
+                "title": "Video Data (CAREFUL LARGE FOLDER)",
+                "collapsed": true
+            },
+            {
+                "type": "expression",
+                "id": "33",
+                "folderId": "35",
+                "color": "#c74440"
+            },
+            {
+                "type": "expression",
+                "id": "31",
+                "folderId": "35",
+                "color": "#6042a6",
+                "latex": "F_{1}=\\left[\\right]"
+            }
+        ]
+    },
+    "includeFunctionParametersInRandomSeed": true
+}
