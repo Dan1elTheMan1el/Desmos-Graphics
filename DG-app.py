@@ -85,7 +85,6 @@ def convert():
         except EOFError:
             pass
     
-    print(frames)
     #Load request dictionaries
     RequestBody = open("Template Requests/RequestBody.json","r")
     RequestBody = json.load(RequestBody)
