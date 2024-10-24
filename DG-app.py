@@ -32,7 +32,7 @@ def next(): #Settings for conversion
         app.setEntry("Height: ", defaultHeight)
         if fileExt == "gif":
             app.addLabelNumericEntry("Frame step: ")
-            app.setEntryDefault("Max Frames: ",1)
+            app.setEntryDefault("Frame step: ",1)
             app.addLabelNumericEntry("Max Frames: ")
         app.addLabel("Graph Site:")
         app.addLabelEntry("Hash: ")
@@ -74,16 +74,18 @@ def convert():
         frames = []
         try:
             for i in range(maxFrames):
-                target.seek(target.tell()+frameskip)
-                pixels = target.resize(res).load()
+                target.seek(i*frameskip)
+                pixels = target.convert('RGB').resize(res).load()
                 RGBList = []
                 for y in range(res[1]):
                     for x in range(res[0]):
                         RGBList.append(pixels[x,res[1]-1-y])
                 frames.append(RGBList)
+                
         except EOFError:
             pass
-
+    
+    print(frames)
     #Load request dictionaries
     RequestBody = open("Template Requests/RequestBody.json","r")
     RequestBody = json.load(RequestBody)
