@@ -20,4 +20,4 @@ GIF Demo: https://www.desmos.com/calculator/h5hapyypza
 - Follow app instructions
 - Restrictions:
     - Request size limit: Desmos only allows so much data to be sent to the server, so resolution / frame count can't be too high
-    - 
+    - Hash character count: Hash must be 10 alphanumeric characters
