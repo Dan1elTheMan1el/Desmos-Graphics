@@ -32,8 +32,8 @@ def next(): #Settings for conversion
         app.setEntry("Height: ", defaultHeight)
         if fileExt == "gif":
             app.addLabelNumericEntry("Frame step: ")
+            app.setEntryDefault("Max Frames: ",1)
             app.addLabelNumericEntry("Max Frames: ")
-            app.setEntryDefault("Max Frames: ",30)
         app.addLabel("Graph Site:")
         app.addLabelEntry("Hash: ")
         app.setEntryDefault("Hash: ","10 characters, or leave blank for random!")
@@ -62,8 +62,15 @@ def convert():
                 RGBList.append(pixels[x,res[1]-1-y])
         frames = [RGBList]
     else:
-        frameskip = int(app.getEntry("Frame step: "))
-        maxFrames = int(app.getEntry("Max Frames: "))
+        if(app.getEntry("Frame step: ")):
+            frameskip = int(app.getEntry("Frame step: "))
+        else:
+            frameskip = 1
+        if(app.getEntry("Max Frames: ")):
+            maxFrames = int(app.getEntry("Max Frames: "))
+        else:
+            maxFrames = 10000
+        
         frames = []
         try:
             for i in range(maxFrames):

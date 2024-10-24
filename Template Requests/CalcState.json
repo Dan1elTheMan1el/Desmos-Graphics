@@ -136,9 +136,8 @@
                     "min": "1",
                     "hardMax": true,
                     "max": "",
-                    "loopMode": "PLAY_ONCE",
-                    "step": "1",
-                    "animationPeriod": 11428.57142857143
+                    "loopMode": "LOOP_FORWARD",
+                    "step": "1"
                 }
             },
             {

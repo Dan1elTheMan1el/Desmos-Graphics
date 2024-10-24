@@ -8,6 +8,8 @@
 
 https://www.desmos.com/calculator/dantheman0
 
+GIF Demo: https://www.desmos.com/calculator/h5hapyypza
+
 ## Features
 - Generate Desmos Graphs from PNGs/GIFs
 - Choose custom graph hashes (links)
