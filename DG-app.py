@@ -36,7 +36,7 @@ def next(): #Settings for conversion
             app.setEntryDefault("Max Frames: ",30)
         app.addLabel("Graph Site:")
         app.addLabelEntry("Hash: ")
-        app.setEntryDefault("Hash: ","Leave blank for random!")
+        app.setEntryDefault("Hash: ","10 characters, or leave blank for random!")
         app.addLabelEntry("Title: ")
         app.addButton("Convert!", convert)
         app.addLabel("error2","Error posting graph - too much data or invalid hash!")
