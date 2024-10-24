@@ -27,6 +27,14 @@
             },
             {
                 "type": "expression",
+                "id": "18",
+                "folderId": "19",
+                "color": "#000000",
+                "latex": "B_{ackground}=\\operatorname{polygon}\\left(\\left(0,0\\right),\\left(0,1\\right),\\left(1,1\\right),\\left(1,0\\right)\\right)",
+                "fillOpacity": "1"
+            },
+            {
+                "type": "expression",
                 "id:": "32",
                 "folderId": "19",
                 "color": "#000000",

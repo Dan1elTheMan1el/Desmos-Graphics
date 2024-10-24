@@ -7,6 +7,9 @@ import webbrowser
 from appJar import gui
 from PIL import Image
 
+def setcolor():
+    app.setButton("Background color: #ffffff",f"Current color: {app.colourBox(colour="#ff0000")}")
+
 def next(): #Settings for conversion
     inFile = app.getEntry("Select PNG/GIF: ")
     fileExt = inFile.split(".")[len(inFile.split("."))-1]
@@ -35,6 +38,7 @@ def next(): #Settings for conversion
             app.setEntryDefault("Frame step: ",1)
             app.addLabelNumericEntry("Max Frames: ")
         app.addLabel("Graph Site:")
+        app.addButton("Background color: #ffffff", setcolor)
         app.addLabelEntry("Hash: ")
         app.setEntryDefault("Hash: ","10 characters, or leave blank for random!")
         app.addLabelEntry("Title: ")
@@ -54,7 +58,7 @@ def convert():
     target = Image.open(inFile)
     fileExt = inFile.split(".")[len(inFile.split("."))-1]
     if fileExt == "png":
-        pixelated = target.resize(res)
+        pixelated = target.convert('RGB').resize(res)
         pixels = pixelated.load()
         RGBList = []
         for y in range(res[1]):
@@ -92,18 +96,19 @@ def convert():
     CalcState = json.load(CalcState)
 
     #Generate 2D formula
-    CalcState["expressions"]["list"][1]["latex"] = f"w_{{idth}}={res[0]}"
-    CalcState["expressions"]["list"][2]["latex"] = f"h_{{eight}}={res[1]}"
-    CalcState["expressions"]["list"][12]["slider"]["max"] = str(len(frames))
+    CalcState["expressions"]["list"][1]["color"] = "#"+app.getButton("Background color: #ffffff").split("#")[1]
+    CalcState["expressions"]["list"][2]["latex"] = f"w_{{idth}}={res[0]}"
+    CalcState["expressions"]["list"][3]["latex"] = f"h_{{eight}}={res[1]}"
+    CalcState["expressions"]["list"][13]["slider"]["max"] = str(len(frames))
     formula = []
     for i in range(len(frames)):
         formula.append(f"F_{{{i+1}}}\\left[P\\right]")
     formula = ','.join(formula)
-    CalcState["expressions"]["list"][14]["latex"] = f"C\\left(t,P\\right)=\\left[{formula}\\right]\\left[t\\right]"
+    CalcState["expressions"]["list"][15]["latex"] = f"C\\left(t,P\\right)=\\left[{formula}\\right]\\left[t\\right]"
 
     #Paste Color Values
-    exampleList = CalcState["expressions"]["list"][15]
-    expList = CalcState["expressions"]["list"][0:15]
+    exampleList = CalcState["expressions"]["list"][16]
+    expList = CalcState["expressions"]["list"][0:16]
     for f in range(len(frames)):
         frameList = json.loads(json.dumps(exampleList))
         frameList["id"] = str(36 + f)
@@ -160,6 +165,7 @@ with gui("Desmos Graphics","500x200",bg = '#3fba6e', font={'size':18,'family':'f
     app.setResizable(canResize=False)
     app.label("Desmos Graphics",font={'size':24,'weight':'bold','family':'futura'})
     app.label("DanielTheManiel",font={'size':12,'slant':'italic','family':'futura'})
+    app.addHorizontalSeparator()
     app.addLabelFileEntry("Select PNG/GIF: ")
     app.addLabel("error1","Please select a PNG or GIF!")
     app.setLabelFg("error1",'red')
