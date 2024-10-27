@@ -1,1 +1,8 @@
 .DS_Store
+
+#PyInstaller
+DG-app.spec
+setup.py
+icon.ico
+build
+dist

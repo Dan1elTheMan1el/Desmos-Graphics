@@ -1,7 +1,7 @@
 import random
 import math
 import json
-import requests
+import httpx
 import urllib
 import webbrowser
 from appJar import gui
@@ -90,10 +90,191 @@ def convert():
             pass
     
     #Load request dictionaries
-    RequestBody = open("Template Requests/RequestBody.json","r")
-    RequestBody = json.load(RequestBody)
-    CalcState = open("Template Requests/CalcState.json","r")
-    CalcState = json.load(CalcState)
+    #RequestBody = open("TemplateRequests/RequestBody.json","r")
+    RequestBody = {
+        "thumb_data": "data:image/png;base64,b",
+        "graph_hash": "",
+        "my_graphs": "false",
+        "is_update": "false",
+        "title": "Screen",
+        "calc_state": "",
+        "lang": "en",
+        "product": "graphing"
+    }
+    #CalcState = open("TemplateRequests/CalcState.json","r")
+    CalcState = {
+        "version": 11,
+        "randomSeed": "a8f578afe43f4593ea7a24b9769aab01",
+        "graph": {
+            "viewport": {
+                "xmin": 0,
+                "ymin": 0,
+                "xmax": 1,
+                "ymax": 1
+            },
+            "showGrid": False,
+            "showXAxis": False,
+            "showYAxis": False,
+            "xAxisNumbers": False,
+            "yAxisNumbers": False,
+            "polarNumbers": False,
+            "userLockedViewport": True,
+            "squareAxes": False
+        },
+        "expressions": {
+            "list": [
+                {
+                    "type": "folder",
+                    "id": "19",
+                    "title": "Back / Dimensions",
+                    "collapsed": True
+                },
+                {
+                    "type": "expression",
+                    "id": "18",
+                    "folderId": "19",
+                    "color": "#000000",
+                    "latex": "B_{ackground}=\\operatorname{polygon}\\left(\\left(0,0\\right),\\left(0,1\\right),\\left(1,1\\right),\\left(1,0\\right)\\right)",
+                    "fillOpacity": "1"
+                },
+                {
+                    "type": "expression",
+                    "id:": "32",
+                    "folderId": "19",
+                    "color": "#000000",
+                    "latex": "w_{idth}=16"
+                },
+                {
+                    "type": "expression",
+                    "id:": "34",
+                    "folderId": "19",
+                    "color": "#000000",
+                    "latex": "h_{eight}=9"
+                },
+                {
+                    "type": "expression",
+                    "id": "10",
+                    "folderId": "19",
+                    "color": "#000000",
+                    "latex": "B_{ack}=\\operatorname{polygon}\\left(\\left(L,B\\right),\\left(L,T\\right),\\left(R,T\\right),\\left(R,B\\right)\\right)",
+                    "fillOpacity": "1"
+                },
+                {
+                    "type": "expression",
+                    "id": "14",
+                    "folderId": "19",
+                    "color": "#6042a6",
+                    "latex": "L=\\left\\{\\frac{\\operatorname{width}}{w_{idth}}<\\frac{\\operatorname{height}}{h_{eight}}:0,0.5-\\frac{\\operatorname{height}w_{idth}}{2\\operatorname{width}h_{eight}}\\right\\}",
+                    "hidden": True,
+                    "slider": {
+                        "hardMin": True,
+                        "hardMax": True,
+                        "min": "0",
+                        "max": "0.5"
+                    }
+                },
+                {
+                    "type": "expression",
+                    "id": "15",
+                    "folderId": "19",
+                    "color": "#000000",
+                    "latex": "B=\\left\\{\\frac{\\operatorname{width}}{w_{idth}}<\\frac{\\operatorname{height}}{h_{eight}}:0.5-\\frac{\\operatorname{width}h_{eight}}{2\\operatorname{height}w_{idth}},0\\right\\}",
+                    "hidden": True,
+                    "slider": {
+                        "hardMin": True,
+                        "hardMax": True,
+                        "min": "0",
+                        "max": "0.5"
+                    }
+                },
+                {
+                    "type": "expression",
+                    "id": "16",
+                    "folderId": "19",
+                    "color": "#c74440",
+                    "latex": "T=1-B",
+                    "hidden": True
+                },
+                {
+                    "type": "expression",
+                    "id": "17",
+                    "folderId": "19",
+                    "color": "#2d70b3",
+                    "latex": "R=1-L",
+                    "hidden": True
+                },
+                {
+                    "type": "folder",
+                    "id": "24",
+                    "title": "Pixels",
+                    "collapsed": True
+                },
+                {
+                    "type": "expression",
+                    "id": "1",
+                    "folderId": "24",
+                    "color": "#000000",
+                    "latex": "P_{ixels}=\\left(i,j\\right)\\operatorname{for}i=\\left[L,L+\\frac{R-L}{w_{idth}-1}...R\\right],j=\\left[B,B+\\frac{T-B}{h_{eight}-1}...T\\right]",
+                    "points": True,
+                    "lines": False,
+                    "dragMode": "NONE",
+                    "colorLatex": "C_{olortemp}",
+                    "pointSize": "p_{size}",
+                    "movablePointSize": "p_{size}"
+                },
+                {
+                    "type": "expression",
+                    "id": "21",
+                    "folderId": "24",
+                    "color": "#000000",
+                    "latex": "p_{size}=\\frac{1.15\\left(R-L\\right)\\operatorname{width}}{w_{idth}}",
+                    "hidden": True
+                },
+                {
+                    "type": "expression",
+                    "id": "5",
+                    "folderId": "24",
+                    "color": "#000000",
+                    "latex": "C_{olortemp}=C\\left(f_{rame},i\\right)\\operatorname{for}i=\\left[1...{w_{idth}h_{eight}}\\right]"
+                },
+                {
+                    "type": "expression",
+                    "id": "30",
+                    "color": "#388c46",
+                    "latex": "f_{rame}=1",
+                    "hidden": True,
+                    "slider": {
+                        "hardMin": True,
+                        "min": "1",
+                        "hardMax": True,
+                        "max": "",
+                        "loopMode": "LOOP_FORWARD",
+                        "step": "1"
+                    }
+                },
+                {
+                    "type": "folder",
+                    "id": "35",
+                    "title": "Video Data (CAREFUL LARGE FOLDER)",
+                    "collapsed": True
+                },
+                {
+                    "type": "expression",
+                    "id": "33",
+                    "folderId": "35",
+                    "color": "#c74440"
+                },
+                {
+                    "type": "expression",
+                    "id": "31",
+                    "folderId": "35",
+                    "color": "#6042a6",
+                    "latex": "F_{1}=\\left[\\right]"
+                }
+            ]
+        },
+        "includeFunctionParametersInRandomSeed": True
+    }
 
     #Generate 2D formula
     CalcState["expressions"]["list"][1]["color"] = "#"+app.getButton("Background color: #ffffff").split("#")[1]
@@ -145,7 +326,7 @@ def convert():
         'Sec-Fetch-Mode': 'cors',
         'Sec-Fetch-Site': 'same-origin'
     }
-    response = requests.request("POST", "https://www.desmos.com/api/v1/calculator/save", headers=headers, data=urllib.parse.urlencode(RequestBody).replace("+","").replace("%27","%22").replace("False","false").replace("True","true"))
+    response = httpx.post("https://www.desmos.com/api/v1/calculator/save", headers=headers,data=urllib.parse.urlencode(RequestBody).replace("+","").replace("%27","%22").replace("False","false").replace("True","true"))
     if response.status_code == 200:
         app.removeLink("Desmos Graph")
         app.addWebLink("Desmos Graph", f"https://www.desmos.com/calculator/{hashN}")
